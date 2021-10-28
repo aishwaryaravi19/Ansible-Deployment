@@ -1,0 +1,16 @@
+---
+- name: Ansible Playbook - undeploy apache server
+  hosts: appserver
+  user: ubuntu
+  tasks:
+   - name: Stop http server
+     become: yes
+     yum:
+      name: apache2
+      state: absent
+   - name: remove file
+     become: yes
+     file:
+       path: /var/www/html/index.html
+       state: absent
+
